@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <festival/festival.h>
+#include <pocketsphinx.h>
 
 class Backend : public QObject
 {

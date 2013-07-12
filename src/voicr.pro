@@ -25,7 +25,14 @@ qtcAddDeployment()
 HEADERS += \
     backend.h
 
-# Includes and files to link against to invoke Festival, the text-to-speech
-# engine.
+# Libraries to invoke Festival, the text-to-speech engine.
 INCLUDEPATH += "/usr/include/speech_tools/"
 LIBS += -lFestival -lestools -lestbase -leststring
+
+# Libraries to invoke Sphinx, the speech recognition engine.
+INCLUDEPATH += "/usr/local/include/pocketsphinx/"
+INCLUDEPATH += "/usr/local/include/sphinxbase/"
+LIBS += -lpocketsphinx -lsphinxbase -lsphinxad
+DEFINES += MODEL_HMM="/usr/local/share/pocketsphinx/model/hmm/en_US/hub4wsj_sc_8k"
+DEFINES += MODEL_LM="/usr/local/share/pocketsphinx/model/lm/en/turtle.DMP"
+DEFINES += MODEL_DIC="/usr/local/share/pocketsphinx/model/lm/en/turtle.dic"
