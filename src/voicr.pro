@@ -13,7 +13,8 @@ QML_IMPORT_PATH =
 
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
-    backend.cpp
+    backend.cpp \
+    texttospeech.cpp
 
 # Installation path
 # target.path =
@@ -23,7 +24,8 @@ include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
 qtcAddDeployment()
 
 HEADERS += \
-    backend.h
+    backend.h \
+    texttospeech.h
 
 # Libraries to invoke Festival, the text-to-speech engine.
 INCLUDEPATH += "/usr/include/speech_tools/"

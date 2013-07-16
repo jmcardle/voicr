@@ -2,15 +2,17 @@
 #define BACKEND_H
 
 #include <QObject>
-#include <festival/festival.h>
-#include <pocketsphinx.h>
+#include "texttospeech.h"
 
 class Backend : public QObject
 {
-    Q_OBJECT
+	Q_OBJECT
 public:
-    explicit Backend(QObject *parent = 0);
-    
+	explicit Backend(QObject *parent = 0);
+
+private:
+	TextToSpeech *speechEngine;
+
 signals:
     
 public slots:
