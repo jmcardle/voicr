@@ -3,6 +3,9 @@
 Backend::Backend(QObject *parent) :
     QObject(parent)
 {
-	speechEngine = new TextToSpeech(this);
-	speechEngine->speak("Hello! I am making sure this works");
+	speechEngine = new TextToSpeech(this, "(voice_en1_mbrola)");
+	speechEngine->speak("Hello!");
+
+	tumblrAuth = new TumblrAuth(this);
+	tumblrAuth->loadInfo();
 }

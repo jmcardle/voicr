@@ -8,7 +8,7 @@ class TextToSpeech : public QObject
 {
 	Q_OBJECT
 public:
-	TextToSpeech(QObject *parent = 0);
+	TextToSpeech(QObject *parent, QString);
 	bool speak(QString);
 
 signals:

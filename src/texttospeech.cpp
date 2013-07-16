@@ -1,16 +1,15 @@
 #include "texttospeech.h"
 
-TextToSpeech::TextToSpeech(QObject *parent) :
+TextToSpeech::TextToSpeech(QObject *parent, QString voiceToUse) :
     QObject(parent)
 {
-	// Initialize Festival, the text-to-speech engine.
 	int heap_size = 210000;
 	int load_init_files = 1;
-	festival_initialize(load_init_files,heap_size);
 
-	// Define the voice that will be used.
-	festival_eval_command("(voice_en1_mbrola)");
-	}
+	// Initialize and define the voice that will be used.
+	festival_initialize(load_init_files, heap_size);
+	festival_eval_command(voiceToUse.toLocal8Bit().data());
+}
 
 bool TextToSpeech::speak(QString textToSay)
 {

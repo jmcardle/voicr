@@ -14,7 +14,8 @@ QML_IMPORT_PATH =
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
     backend.cpp \
-    texttospeech.cpp
+    texttospeech.cpp \
+    tumblrauth.cpp
 
 # Installation path
 # target.path =
@@ -25,16 +26,15 @@ qtcAddDeployment()
 
 HEADERS += \
     backend.h \
-    texttospeech.h
+    texttospeech.h \
+    tumblrauth.h \
+    credentials.h
+
+# Libraries to invoke kQOAuth, the OAuth protocol implementation.
+CONFIG += kqoauth
+QT += network
+LIBS += -lkqoauth
 
 # Libraries to invoke Festival, the text-to-speech engine.
 INCLUDEPATH += "/usr/include/speech_tools/"
 LIBS += -lFestival -lestools -lestbase -leststring
-
-# Libraries to invoke Sphinx, the speech recognition engine.
-INCLUDEPATH += "/usr/local/include/pocketsphinx/"
-INCLUDEPATH += "/usr/local/include/sphinxbase/"
-LIBS += -lpocketsphinx -lsphinxbase -lsphinxad
-DEFINES += MODEL_HMM="/usr/local/share/pocketsphinx/model/hmm/en_US/hub4wsj_sc_8k"
-DEFINES += MODEL_LM="/usr/local/share/pocketsphinx/model/lm/en/turtle.DMP"
-DEFINES += MODEL_DIC="/usr/local/share/pocketsphinx/model/lm/en/turtle.dic"
