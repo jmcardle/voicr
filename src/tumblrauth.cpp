@@ -29,7 +29,7 @@ TumblrAuth::~TumblrAuth()
 	delete oauthManager;
 }
 
-void TumblrAuth::getAccess()
+void TumblrAuth::getAuthorization()
 {
 	oauthRequest->initRequest(KQOAuthRequest::TemporaryCredentials, QUrl(OAUTH_REQUEST_TOKEN_URL));
 	oauthRequest->setConsumerKey(OAUTH_CONSUMER_KEY);
@@ -72,20 +72,39 @@ void TumblrAuth::onRequestReady(QByteArray response)
 	qDebug() << response;
 }
 
-void TumblrAuth::loadInfo()
+void TumblrAuth::loadDashboard()
+{
+	QString url = TUMBLR_API_URL + "user/dashboard";
+	issueRequest(url);
+}
+
+void TumblrAuth::loadInfo(QString blogName)
+{
+	QString url = TUMBLR_API_URL + "blog/" + blogName + ".tumblr.com/info?api_key=" + OAUTH_CONSUMER_KEY;
+	issueRequest(url);
+}
+
+void TumblrAuth::issueRequest(QString urlFormat)
+{
+	issueRequest(urlFormat, KQOAuthParameters());
+}
+
+void TumblrAuth::issueRequest(QString urlFormat, KQOAuthParameters params)
 {
 	if( oauthSettings.value("oauth_token").toString().isEmpty() ||
 		oauthSettings.value("oauth_token_secret").toString().isEmpty()) {
 		return;
 	}
 
-	oauthRequest->initRequest(KQOAuthRequest::AuthorizedRequest, QUrl("http://api.tumblr.com/v2/blog/fruzz.tumblr.com/info?api_key=" + QString(OAUTH_CONSUMER_KEY)));
+	QUrl infoUrl(urlFormat);
+	oauthRequest->initRequest(KQOAuthRequest::AuthorizedRequest, infoUrl);
 	oauthRequest->setConsumerKey(OAUTH_CONSUMER_KEY);
 	oauthRequest->setConsumerSecretKey(OAUTH_CONSUMER_SECRET_KEY);
 	oauthRequest->setToken(oauthSettings.value("oauth_token").toString());
 	oauthRequest->setTokenSecret(oauthSettings.value("oauth_token_secret").toString());
 
-	KQOAuthParameters params;
+	oauthRequest->setAdditionalParameters(params);
+
 	//params.insert("status", tweet);
 	//oauthRequest->setAdditionalParameters(params);
 

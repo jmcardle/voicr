@@ -6,6 +6,8 @@
 #include <QDebug>
 #include <QtKOAuth/QtKOAuth>
 
+#define TUMBLR_API_URL QString("http://api.tumblr.com/v2/")
+
 class TumblrAuth : public QObject
 {
 	Q_OBJECT
@@ -13,13 +15,17 @@ public:
 	TumblrAuth(QObject *parent);
 	~TumblrAuth();
 
-	void getAccess();
-	void loadInfo();
+	void getAuthorization();
+	void loadInfo(QString);
+	void loadDashboard();
 
 private:
 	KQOAuthRequest *oauthRequest;
 	KQOAuthManager *oauthManager;
 	QSettings oauthSettings;
+
+	void issueRequest(QString);
+	void issueRequest(QString, KQOAuthParameters);
 	
 signals:
 	

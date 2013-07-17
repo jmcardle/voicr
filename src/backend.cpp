@@ -7,5 +7,7 @@ Backend::Backend(QObject *parent) :
 	speechEngine->speak("Hello!");
 
 	tumblrAuth = new TumblrAuth(this);
-	tumblrAuth->loadInfo();
+	//tumblrAuth->getAuthorization();
+	//tumblrAuth->loadInfo("fruzz");
+	tumblrAuth->loadDashboard();
 }
