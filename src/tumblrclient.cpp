@@ -5,6 +5,7 @@ TumblrClient::TumblrClient(QObject *parent) :
 	QObject(parent)
 {
 	tumblrAuth = new TumblrAuth(this);
+	tumblrParser = new TumblrParser(this);
 
 	connect(tumblrAuth, SIGNAL(requestReply(QString)), this, SLOT(onTumblrReply(QString)));
 }
@@ -43,5 +44,5 @@ void TumblrClient::loadInfo(QString blogName)
 
 void TumblrClient::onTumblrReply(QString response)
 {
-	qDebug() << response;
+	tumblrParser->parseResponse(response);
 }

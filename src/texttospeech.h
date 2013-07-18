@@ -14,16 +14,23 @@ class TextToSpeech : public QObject
 public:
 	TextToSpeech(QObject *parent, QString);
 	void newPage(QStringList);
-	void nextParagraph();
 
 private:
 	QMediaPlayer *player;
 	QMediaPlaylist *playlist;
 	QTemporaryDir temporaryDir;
+	QString festivalVoice;
 
 signals:
     
 public slots:
+	void startReading();
+	void stopReading();
+	void pauseReading();
+	void resumeReading();
+	void readNext();
+
+private slots:
 
 };
 

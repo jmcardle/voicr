@@ -1,9 +1,10 @@
-#ifndef TUMBLR_H
-#define TUMBLR_H
+#ifndef TUMBLRCLIENT_H
+#define TUMBLRCLIENT_H
 
 #include <QObject>
 #include <QDebug>
 #include "tumblrauth.h"
+#include "tumblrparser.h"
 
 #define TUMBLR_API_URL "http://api.tumblr.com/v2"
 
@@ -19,6 +20,7 @@ public:
 
 private:
 	TumblrAuth *tumblrAuth;
+	TumblrParser *tumblrParser;
 	QString getUrl(QString);
 	QString getUrl(QString, QString, bool);
 
@@ -31,4 +33,4 @@ private slots:
 	
 };
 
-#endif // TUMBLR_H
+#endif // TUMBLRCLIENT_H
