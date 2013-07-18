@@ -6,8 +6,8 @@ Backend::Backend(QObject *parent) :
 	speechEngine = new TextToSpeech(this, "(voice_en1_mbrola)");
 	speechEngine->speak("Hello!");
 
-	tumblrAuth = new TumblrAuth(this);
+	tumblrClient = new TumblrClient(this);
 	//tumblrAuth->getAuthorization();
 	//tumblrAuth->loadInfo("fruzz");
-	tumblrAuth->loadDashboard();
+	tumblrClient->loadDashboard();
 }

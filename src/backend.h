@@ -2,7 +2,7 @@
 #define BACKEND_H
 
 #include <QObject>
-#include "tumblrauth.h"
+#include "tumblrclient.h"
 #include "texttospeech.h"
 
 class Backend : public QObject
@@ -13,7 +13,7 @@ public:
 
 private:
 	TextToSpeech *speechEngine;
-	TumblrAuth *tumblrAuth;
+	TumblrClient *tumblrClient;
 
 signals:
     

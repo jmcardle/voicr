@@ -15,7 +15,8 @@ QML_IMPORT_PATH =
 SOURCES += main.cpp \
     backend.cpp \
     texttospeech.cpp \
-    tumblrauth.cpp
+    tumblrauth.cpp \
+    tumblrclient.cpp
 
 # Installation path
 # target.path =
@@ -28,7 +29,8 @@ HEADERS += \
     backend.h \
     texttospeech.h \
     tumblrauth.h \
-    credentials.h
+    credentials.h \
+    tumblrclient.h
 
 # Libraries to invoke kQOAuth, the OAuth protocol implementation.
 CONFIG += kqoauth
