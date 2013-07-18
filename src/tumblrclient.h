@@ -5,7 +5,7 @@
 #include <QDebug>
 #include "tumblrauth.h"
 
-#define TUMBLR_API_URL QString("http://api.tumblr.com/v2/")
+#define TUMBLR_API_URL "http://api.tumblr.com/v2"
 
 class TumblrClient : public QObject
 {
@@ -19,7 +19,9 @@ public:
 
 private:
 	TumblrAuth *tumblrAuth;
-	
+	QString getUrl(QString);
+	QString getUrl(QString, QString, bool);
+
 signals:
 	
 public slots:

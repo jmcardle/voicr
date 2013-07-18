@@ -34,7 +34,7 @@ HEADERS += \
 
 # Libraries to invoke kQOAuth, the OAuth protocol implementation.
 CONFIG += kqoauth
-QT += network
+QT += network multimedia concurrent
 LIBS += -lkqoauth
 
 # Libraries to invoke Festival, the text-to-speech engine.

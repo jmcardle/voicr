@@ -4,10 +4,11 @@ Backend::Backend(QObject *parent) :
     QObject(parent)
 {
 	speechEngine = new TextToSpeech(this, "(voice_en1_mbrola)");
-	speechEngine->speak("Hello!");
+	speechEngine->newPage(QStringList() << "Hello!");
 
 	tumblrClient = new TumblrClient(this);
-	//tumblrAuth->getAuthorization();
-	//tumblrAuth->loadInfo("fruzz");
-	tumblrClient->loadDashboard();
+	//tumblrClient->getAuthorization();
+	tumblrClient->loadInfo("fruzz");
+	//tumblrClient->loadDashboard();
+
 }
