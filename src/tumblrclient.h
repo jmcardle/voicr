@@ -29,7 +29,7 @@ signals:
 public slots:
 
 private slots:
-	void onTumblrReply(QString);
+	void onTumblrReply(QByteArray);
 	
 };
 

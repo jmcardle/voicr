@@ -27,7 +27,7 @@ private:
 	QSettings oauthSettings;
 
 signals:
-	void requestReply(QString);
+	void requestReply(QByteArray);
 	
 public slots:
 	

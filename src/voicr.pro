@@ -17,7 +17,8 @@ SOURCES += main.cpp \
     texttospeech.cpp \
     tumblrauth.cpp \
     tumblrclient.cpp \
-    tumblrparser.cpp
+    tumblrparser.cpp \
+    tumblrobject.cpp
 
 # Installation path
 # target.path =
@@ -32,7 +33,8 @@ HEADERS += \
     tumblrauth.h \
     credentials.h \
     tumblrclient.h \
-    tumblrparser.h
+    tumblrparser.h \
+    tumblrobject.h
 
 # Libraries to invoke kQOAuth, the OAuth protocol implementation.
 CONFIG += kqoauth

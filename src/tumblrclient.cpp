@@ -7,29 +7,12 @@ TumblrClient::TumblrClient(QObject *parent) :
 	tumblrAuth = new TumblrAuth(this);
 	tumblrParser = new TumblrParser(this);
 
-	connect(tumblrAuth, SIGNAL(requestReply(QString)), this, SLOT(onTumblrReply(QString)));
+	connect(tumblrAuth, SIGNAL(requestReply(QByteArray)), this, SLOT(onTumblrReply(QByteArray)));
 }
 
 TumblrClient::~TumblrClient()
 {
 	delete tumblrAuth;
-}
-
-QString TumblrClient::getUrl(QString method)
-{
-	return QString(TUMBLR_API_URL) + method;
-}
-
-QString TumblrClient::getUrl(QString method, QString blogName, bool withKey)
-{
-	QString url = QString(TUMBLR_API_URL) + "/blog/" + blogName +
-			".tumblr.com" + method;
-
-	if (withKey) {
-		url.append("?api_key=" + QString(OAUTH_CONSUMER_KEY));
-	}
-
-	return url;
 }
 
 void TumblrClient::loadDashboard()
@@ -42,7 +25,24 @@ void TumblrClient::loadInfo(QString blogName)
 	tumblrAuth->issueRequest(getUrl("/info", blogName, true));
 }
 
-void TumblrClient::onTumblrReply(QString response)
+void TumblrClient::onTumblrReply(QByteArray response)
 {
-	tumblrParser->parseResponse(response);
+	tumblrParser->parse(response);
+}
+
+QString TumblrClient::getUrl(QString method)
+{
+	return QString(TUMBLR_API_URL) + method;
+}
+
+QString TumblrClient::getUrl(QString method, QString blogName, bool withKey)
+{
+	// Base URL.
+	QString url = QString(TUMBLR_API_URL) +
+		"/blog/" + blogName + ".tumblr.com" + method;
+
+	// Append parameter with api key if requested.
+	if (withKey) { url.append("?api_key=" + QString(OAUTH_CONSUMER_KEY)); }
+
+	return url;
 }

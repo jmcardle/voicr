@@ -70,7 +70,7 @@ void TumblrAuth::onAuthorizedRequestDone()
 void TumblrAuth::onRequestReady(QByteArray response)
 {
 	// Response back from Tumblr
-	emit requestReply(QString(response));
+	emit requestReply(response);
 }
 
 void TumblrAuth::issueRequest(QString urlFormat)
